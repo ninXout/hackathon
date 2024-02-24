@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spending Recommendations</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+<body>
+    <input type="file" id="csvFileInput" accept=".csv" />
+    <button onclick="processCSV()">Get Spending Recommendations</button>
+
+    <script>
+        function processCSV() {
+            const input = document.getElementById('csvFileInput');
+            
+            if (input.files.length === 0) {
+                alert('Please select a CSV file.');
+                return;
+            }
+
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const csvContent = e.target.result;
+                const rows = csvContent.split('\n');
+
+                // Process CSV data (this is a placeholder, you'll need to integrate with your AI service)
+                const spendingData = processCSVData(rows);
+
+                // Placeholder: Replace this with your actual AI integration logic
+                const recommendations = getSpendingRecommendations(spendingData);
+
+                // Display recommendations
+                alert('Spending Recommendations:\n' + recommendations);
+            };
+
+            reader.readAsText(file);
+        }
+
+        function processCSVData(rows) {
+            // Placeholder: Implement your logic to process CSV data if needed
+            // For simplicity, this example assumes the CSV contains only one column of spending amounts
+            const spendingData = rows.map(row => parseFloat(row.trim()));
+            return spendingData;
+        }
+
+        function getSpendingRecommendations(spendingData) {
+            // Placeholder: Integrate with your actual AI service to get spending recommendations
+            // For now, just return a placeholder recommendation
+            return "Consider allocating more funds to savings or investments.";
+        }
+    </script>
+</body>
+</html>
